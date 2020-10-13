@@ -3,39 +3,29 @@ import os
 
 #! Input Validation
 play= "Y"
-countH= int(0)
-countC= int(0)
+# You don't need to set the type of a variable
+countH= 0
+countC= 0
 while(play == "Y"):
-    while(play=="Y"):
-        get_user_choice= input("Rock, Paper, Scissors ? : ")
-        get_user_choice= get_user_choice.lower()
-        if(get_user_choice=="rock" or get_user_choice=="paper" or get_user_choice=="scissors" ):
-            break
-
+    get_user_choice= input("Rock, Paper, Scissors ? : ")
+    get_user_choice= get_user_choice.lower()
+    # Use the "in" operator to check for multiple string comparisons at once
+    # Check if the input is not valid, instead of checking if its valid
+    if(get_user_choice not in ("rock", "paper", "scissors")):
+       print("This is not a valid option!") 
+       break
 #! Computer Choice
     options=["rock", "paper", "scissors"]
-    choice= random.randint(0, 2)
-    final_choice= options[choice]
+    # Use the built in Function choice to get a random element of a list
+    final_choice= random.choice(options)
     print("Computer Choice: ", final_choice )
 
 #! Win/Loss Conditions
-
-    if(final_choice=="rock" and get_user_choice=="paper"):
+    # You can check for multiple statements at once with the "or" operator
+    if(final_choice=="rock" and get_user_choice=="paper" or final_choice=="paper" and get_user_choice=="scissors" or final_choice=="scissors" and get_user_choice=="rock"):
         print("You Won")
         countH+= 1
-    elif(final_choice=="paper" and get_user_choice=="scissors"):
-        print("You Won")
-        countH+= 1
-    elif(final_choice=="scissors" and get_user_choice=="rock"):
-        print("You Won")
-        countH+= 1
-    elif(final_choice=="paper" and get_user_choice=="rock"):
-        print("You Lost")
-        countC+= 1
-    elif(final_choice=="rock" and get_user_choice=="scissors"):
-        print("You Lost")
-        countC+= 1
-    elif(final_choice=="scissors" and get_user_choice=="paper"):
+    elif(final_choice=="paper" and get_user_choice=="rock" or final_choice=="rock" and get_user_choice=="scissors" or final_choice=="scissors" and get_user_choice=="paper"):
         print("You Lost")
         countC+= 1
     elif(final_choice==get_user_choice):
